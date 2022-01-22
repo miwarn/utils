@@ -4,7 +4,7 @@ function randomCharacter(characterClass) {
         c: Array.from('bcdfghjklmnpqrstvwxz'),
         C: Array.from('BCDFGHJKLMNPQRSTVWXZ'),
         v: Array.from('aeiouy'),
-        V: Array.from('AEIUY'),
+        V: Array.from('AEIOUY'),
         d: Array.from('0123456789')
     }
     const a = characterClasses[characterClass]
