@@ -15,4 +15,32 @@ function checkDate(y, m, d) {
     return (d >= 1 && d <= lastDayOfMonth(y, m))
 }
 
-console.log(checkDate(1900, 2, 29))
+function splitDate(date) {
+    return date.split('-').map(e => Number(e))
+}
+
+function dateString(y, m, d) {
+    return      String(y).padStart(4, '0') 
+        + '-' + String(m).padStart(2, '0') 
+        + '-' + String(d).padStart(2, '0')
+}
+
+function dayAfter(date) {
+    const [y, m, d] = splitDate(date)
+    if (!checkDate(y, m, d)) return ''
+    if (d < lastDayOfMonth(y, m)) return dateString(y, m, d + 1)
+    else if (m < 12) return dateString(y, m + 1, d - lastDayOfMonth(y, m) + 1)
+    else return dateString(y+1, 1, 1)
+}
+
+function dayBefore(date) {
+    const [y, m, d] = parseDateString(date)
+    if (!checkDate(y, m, d)) return ''
+    if (d > 1) return dateString(y, m, d-1)
+    else if (m > 1) return dateString(y, m-1, lastDayOfMonth(m-1))
+    else return dateString(y-1, 12, 31)
+}
+
+for (let d = '2021-01-01'; d<'2022-01-01'; d = dayAfter(d)) {
+    console.log(d)
+}
